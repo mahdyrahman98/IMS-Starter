@@ -1,4 +1,4 @@
-spackage com.qa.ims.controller;
+package com.qa.ims.controller;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class OrderController implements CrudController<Order> {
 	private Utils utils;
 	OrderitemController orderitemcontroller = new OrderitemController (orderitemDAO, utils);
 	
-	public OrderController(OrderDAO orderDAO, OrderitemDAO orderitemDAO, CustomerDAO customerDAO, ItemDAO itemDAO, Utils utils) {
+	public OrderController(OrderDAO orderDAO, OrderitemDAO orderitemDAO, Utils utils) {
 		super();
 		this.orderDAO = orderDAO;
 		this.orderitemDAO = orderitemDAO;
@@ -64,16 +64,18 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info("Do you want to add an item?: y/n");
 			String choice = utils.getString();
 			if(choice.toLowerCase().equals("y")) {
-				orderitemcontroller.create(order.getOrderid());
-			}else {
-				additem = false;
-			}
+		LOGGER.info("please enter itemid");
+		Long itemid = utils.getLong();
+		
+		
+			
 		}
 		LOGGER.info("Order generated");
 		return order;
 		
 	}
-	
+		
+	}	
 		
 		
 	
@@ -89,7 +91,7 @@ public class OrderController implements CrudController<Order> {
 		Double ordervalue = utils.getDouble();
 		LOGGER.info("Please enter an order date");
 		String orderdate = utils.getString();
-		Order order = orderDAO.update(new Order(customerid, orderdate));
+		Order order = orderDAO.update(new Order(customerid, orderdate, ordervalue));
 		LOGGER.info("Order Updated");
 		return order;
 	}
