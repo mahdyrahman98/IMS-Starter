@@ -88,6 +88,8 @@ public class OrderDAO implements Dao<Order> {
 	public Order generate (Orderitem orderitem) throws SQLException {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("INSERT INTO orderitems(item_id, quantity) VALUES (?, ?)");) {
+			statement.setLong(1, orderitem.getItemid());
+			statement.setDouble(2, orderitem.getItemquantity());
 		}
 		
 		
