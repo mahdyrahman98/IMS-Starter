@@ -37,3 +37,8 @@ order_date DATE NOT NULL,
 PRIMARY KEY (order_id),
 FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
+
+
+SELECT i.item_id, i.item_name, i.price, y.order_id, y.item_quantity
+FROM item i
+LEFT OUTER JOIN orderitems y ON i.item_id = y.item_id;
