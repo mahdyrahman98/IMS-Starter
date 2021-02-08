@@ -13,11 +13,10 @@ public class Order {
 		this.ordervalue = ordervalue;
 		this.orderdate = orderdate;
 	}
-	public Order(Long customerid, Double ordervalue, String orderdate) {
+	public Order(Long customerid, String orderdate) {
 	
 	
 		this.customerid = customerid;
-		this.ordervalue = ordervalue;
 		this.orderdate = orderdate;
 		
 		// TODO Auto-generated constructor stub
