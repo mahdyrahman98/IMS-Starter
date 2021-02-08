@@ -1,5 +1,6 @@
 package com.qa.ims.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +11,6 @@ import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Order;
-import com.qa.ims.persistence.dao.OrderitemDAO;
 import com.qa.ims.persistence.domain.Orderitem;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
@@ -20,19 +20,12 @@ public class OrderController implements CrudController<Order> {
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	private OrderDAO orderDAO;
-	private OrderitemDAO orderitemDAO;
-	private CustomerDAO customerDAO;
-	private ItemDAO itemDAO;
 	private Utils utils;
-	OrderitemController orderitemcontroller = new OrderitemController (orderitemDAO, utils);
 	
-	public OrderController(OrderDAO orderDAO, OrderitemDAO orderitemDAO, Utils utils) {
+	
+	public OrderController(OrderDAO orderDAO, Utils utils) {
 		super();
 		this.orderDAO = orderDAO;
-		this.orderitemDAO = orderitemDAO;
-		this.customerDAO = customerDAO;
-		this.itemDAO = itemDAO;
-		
 		this.utils = utils;
 	}
 
@@ -66,8 +59,21 @@ public class OrderController implements CrudController<Order> {
 			if(choice.toLowerCase().equals("y")) {
 		LOGGER.info("please enter itemid");
 		Long itemid = utils.getLong();
+		LOGGER.info("Please enter how much of this item that you want");
+		Long quantity = utils.getLong();
+		LOGGER.info("Do you want to add anything else?");
+		if(choice.toLowerCase().equals("y")) {
+		else 
+			
+		}
 		
-		Order order = orderDAO.generate(null)
+		
+		try {
+			Order orderitem = orderDAO.generate(null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 			
 		}
@@ -75,6 +81,7 @@ public class OrderController implements CrudController<Order> {
 		return order;
 		
 	}
+		return order;
 		
 	}	
 		

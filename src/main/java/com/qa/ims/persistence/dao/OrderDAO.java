@@ -87,8 +87,7 @@ public class OrderDAO implements Dao<Order> {
 	
 	public Order generate (Orderitem orderitem) throws SQLException {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement( "SELECT i.item_id, i.item_name, i.price, y.order_id, y.item_quantity FROM item i LEFT OUTER JOIN orderitems y ON i.item_id = y.item_id;" );) {
-			
+				PreparedStatement statement = connection.prepareStatement("INSERT");) {
 		}
 		
 		
