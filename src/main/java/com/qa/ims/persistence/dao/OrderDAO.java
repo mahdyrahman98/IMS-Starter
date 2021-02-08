@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.Orderitem;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO implements Dao<Order> {
@@ -62,9 +63,9 @@ public class OrderDAO implements Dao<Order> {
 	}
 
 	/**
-	 * Creates a customer in the database
+	 * Creates aN ORDER in the database
 	 * 
-	 * @param customer - takes in a customer object. id will be ignored
+	 * @param ORDER - takes in a ORDER object. id will be ignored
 	 */
 	@Override
 	public Order create(Order order) {
@@ -84,7 +85,19 @@ public class OrderDAO implements Dao<Order> {
 		return null;
 	}
 	
-	public Order 
+	public Order generate (Orderitem orderitem) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement( "SELECT i.item_id, i.item_name, i.price, y.order_id, y.ite_quantity FROM item i LEFT OUTER JOIN orderitems y ON i.item_id = y.item_id;" )
+		
+		
+		
+		
+		
+		
+		return null;
+		
+		
+	}
 
 	@Override
 	public Order read(Long id) {
