@@ -67,6 +67,7 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("please enter itemid");
 		Long itemid = utils.getLong();
 		
+		Order order = orderDAO.generate(null)
 		
 			
 		}
