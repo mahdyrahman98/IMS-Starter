@@ -71,7 +71,7 @@ public class OrderDAO implements Dao<Order> {
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement(
-						"INSERT INTO orders(customer_id, order_value, order_date) VALUES (?, ?, ?)");) {
+						"INSERT INTO orders(customer_id, order_date) VALUES (?, ?)");) {
 			statement.setLong(1, order.getCustomerid());
 			statement.setDouble(2, order.getOrdervalue());
 			statement.setString(3, order.getOrderdate());
@@ -85,9 +85,11 @@ public class OrderDAO implements Dao<Order> {
 		return null;
 	}
 	
-	public Order generate (Orderitem orderitem) {
+	public Order generate (Orderitem orderitem) throws SQLException {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement( "SELECT i.item_id, i.item_name, i.price, y.order_id, y.ite_quantity FROM item i LEFT OUTER JOIN orderitems y ON i.item_id = y.item_id;" )
+				PreparedStatement statement = connection.prepareStatement( "SELECT i.item_id, i.item_name, i.price, y.order_id, y.item_quantity FROM item i LEFT OUTER JOIN orderitems y ON i.item_id = y.item_id;" );) {
+			
+		}
 		
 		
 		
