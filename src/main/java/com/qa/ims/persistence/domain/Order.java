@@ -22,6 +22,13 @@ public class Order {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Order(Long customerid, String orderdate, Double ordervalue) {
+		
+		this.customerid = customerid;
+		this.orderdate = orderdate;
+		this.ordervalue = ordervalue;
+		// TODO Auto-generated constructor stub
+	}
 	public Long getOrderid() {
 		return orderid;
 	}

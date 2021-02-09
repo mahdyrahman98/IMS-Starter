@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.Orderitem;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO implements Dao<Order> {
@@ -62,15 +63,15 @@ public class OrderDAO implements Dao<Order> {
 	}
 
 	/**
-	 * Creates a customer in the database
+	 * Creates aN ORDER in the database
 	 * 
-	 * @param customer - takes in a customer object. id will be ignored
+	 * @param ORDER - takes in a ORDER object. id will be ignored
 	 */
 	@Override
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement(
-						"INSERT INTO orders(customer_id, order_value, order_date) VALUES (?, ?, ?)");) {
+						"INSERT INTO orders(customer_id, order_date) VALUES (?, ?)");) {
 			statement.setLong(1, order.getCustomerid());
 			statement.setDouble(2, order.getOrdervalue());
 			statement.setString(3, order.getOrderdate());
@@ -82,6 +83,23 @@ public class OrderDAO implements Dao<Order> {
 			LOGGER.error(e.getMessage());
 		}
 		return null;
+	}
+	
+	public Order generate (Orderitem orderitem) throws SQLException {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("INSERT INTO orderitems(item_id, quantity) VALUES (?, ?)");) {
+			statement.setLong(1, orderitem.getItemid());
+			statement.setDouble(2, orderitem.getItemquantity());
+		}
+		
+		
+		
+		
+		
+		
+		return null;
+		
+		
 	}
 
 	@Override

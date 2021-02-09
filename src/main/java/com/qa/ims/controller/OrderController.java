@@ -1,5 +1,6 @@
 package com.qa.ims.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +11,6 @@ import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Order;
-import com.qa.ims.persistence.dao.OrderitemDAO;
 import com.qa.ims.persistence.domain.Orderitem;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
@@ -20,19 +20,12 @@ public class OrderController implements CrudController<Order> {
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	private OrderDAO orderDAO;
-	private OrderitemDAO orderitemDAO;
-	private CustomerDAO customerDAO;
-	private ItemDAO itemDAO;
 	private Utils utils;
-	OrderitemController orderitemcontroller = new OrderitemController (orderitemDAO, utils);
 	
-	public OrderController(OrderDAO orderDAO, OrderitemDAO orderitemDAO, CustomerDAO customerDAO, ItemDAO itemDAO, Utils utils) {
+	
+	public OrderController(OrderDAO orderDAO, Utils utils) {
 		super();
 		this.orderDAO = orderDAO;
-		this.orderitemDAO = orderitemDAO;
-		this.customerDAO = customerDAO;
-		this.itemDAO = itemDAO;
-		
 		this.utils = utils;
 	}
 
@@ -50,9 +43,10 @@ public class OrderController implements CrudController<Order> {
 
 	/**
 	 * Creates a order by taking in user input
+	 * @throws SQLException 
 	 */
 	@Override
-	public Order create() {
+	public Order create() throws SQLException {
 		
 		boolean additem = true;
 		LOGGER.info("Please enter customerID");
@@ -64,15 +58,21 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info("Do you want to add an item?: y/n");
 			String choice = utils.getString();
 			if(choice.toLowerCase().equals("y")) {
-				orderitemcontroller.create(order.getOrderid());
-			}else {
-				additem = false;
-			}
+		LOGGER.info("please enter itemid");
+		Long itemid = utils.getLong();
+		LOGGER.info("Please enter how much of this item that you want");
+		Long quantity = utils.getLong();
+		Order order1 = orderDAO.generate(new Orderitem (itemid, quantity));
+		LOGGER.info("Do you want to add anything else?");}	
+		else  {
+			additem = false;
+			
+		}
+			
 		}
 		LOGGER.info("Order generated");
 		return order;
-		while
-	}
+
 	
 		
 		
@@ -89,7 +89,7 @@ public class OrderController implements CrudController<Order> {
 		Double ordervalue = utils.getDouble();
 		LOGGER.info("Please enter an order date");
 		String orderdate = utils.getString();
-		Order order = orderDAO.update(new Order(customerid, orderdate));
+		Order order = orderDAO.update(new Order(customerid, orderdate, ordervalue));
 		LOGGER.info("Order Updated");
 		return order;
 	}
