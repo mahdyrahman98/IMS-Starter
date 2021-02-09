@@ -61,9 +61,11 @@ public class OrderController implements CrudController<Order> {
 		Long itemid = utils.getLong();
 		LOGGER.info("Please enter how much of this item that you want");
 		Long quantity = utils.getLong();
-		LOGGER.info("Do you want to add anything else?");
-		if(choice.toLowerCase().equals("y")) {
-		else 
+		LOGGER.info("Do you want to add anything else?");}
+			{
+		else  {
+			
+		}
 			
 		}
 		
