@@ -8,7 +8,7 @@ public class Order {
 	private Long customerid;
 	private Double ordervalue;
 	private List<Item> items;
-	private Long orderId;
+
 	
 	
 	public List<Item> getItems() {
@@ -50,7 +50,7 @@ public class Order {
 		return orderid;
 	}
 	public void setOrderId(Long orderid) {
-		this.orderId = orderid;
+		this.orderid = orderid;
 	}
 	public Long getCustomerId() {
 		return getCustomerId();
