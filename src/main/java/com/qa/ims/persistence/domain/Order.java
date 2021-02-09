@@ -1,69 +1,81 @@
 package com.qa.ims.persistence.domain;
 
+import java.util.List;
+
 public class Order {
 	
 	private Long orderid;
 	private Long customerid;
 	private Double ordervalue;
-	private String orderdate;
-	public Order(Long orderid, Long customerid,  Double ordervalue, String orderdate) {
+	private List<Item> items;
+
+	
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	public Order(Long orderid, Long customerid, Double ordervalue, List<Item> items) {
 		super();
 		this.orderid = orderid;
 		this.customerid = customerid;
 		this.ordervalue = ordervalue;
-		this.orderdate = orderdate;
+		this.items = items;
 	}
-	public Order(Long customerid, String orderdate) {
 	
+	public Order(Long customerid) {
+	super();
 	
 		this.customerid = customerid;
-		this.orderdate = orderdate;
+		
 		
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Order(Long customerid, String orderdate, Double ordervalue) {
-		
+	public Order(Long orderid, Long customerid, Double ordervalue) {
+		super();
+		this.orderid = orderid;
 		this.customerid = customerid;
-		this.orderdate = orderdate;
+		this.ordervalue = ordervalue;
+	}
+	public Order(Long customerid, Double ordervalue) {
+		super();
+		this.customerid = customerid;
 		this.ordervalue = ordervalue;
 		// TODO Auto-generated constructor stub
 	}
-	public Long getOrderid() {
+	public Long getOrderId() {
 		return orderid;
 	}
-	public void setOrderid(Long orderid) {
+	public void setOrderId(Long orderid) {
 		this.orderid = orderid;
 	}
-	public Long getCustomerid() {
-		return customerid;
+	public Long getCustomerId() {
+		return getCustomerId();
 	}
-	public void setCustomerid(Long customerid) {
+	public void setCustomerId(Long customerid) {
 		this.customerid = customerid;
 	}
-	public Double getOrdervalue() {
+	public Double getOrderValue() {
 		return ordervalue;
 	}
-	public void setOrdervalue(Double ordervalue) {
+	public void setOrderValue(Double ordervalue) {
 		this.ordervalue = ordervalue;
 	}
-	public String getOrderdate() {
-		return orderdate;
-	}
-	public void setOrderdate(String orderdate) {
-		this.orderdate = orderdate;
-	}
+
 	@Override
 	public String toString() {
 		return "Order [orderid=" + orderid + ", customerid=" + customerid + ", ordervalue=" + ordervalue
-				+ ", orderdate=" + orderdate + "]";
+				+ ", orderdate=" +  "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((customerid == null) ? 0 : customerid.hashCode());
-		result = prime * result + ((orderdate == null) ? 0 : orderdate.hashCode());
+		result = prime * result + ((items == null) ? 0 : items.hashCode());
 		result = prime * result + ((orderid == null) ? 0 : orderid.hashCode());
 		result = prime * result + ((ordervalue == null) ? 0 : ordervalue.hashCode());
 		return result;
@@ -82,10 +94,10 @@ public class Order {
 				return false;
 		} else if (!customerid.equals(other.customerid))
 			return false;
-		if (orderdate == null) {
-			if (other.orderdate != null)
+		if (items == null) {
+			if (other.items != null)
 				return false;
-		} else if (!orderdate.equals(other.orderdate))
+		} else if (!items.equals(other.items))
 			return false;
 		if (orderid == null) {
 			if (other.orderid != null)

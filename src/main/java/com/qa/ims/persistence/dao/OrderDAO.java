@@ -23,8 +23,7 @@ public class OrderDAO implements Dao<Order> {
 		Long orderid = resultSet.getLong("order_id");
 		Long customerid = resultSet.getLong("customer_id");
 		Double ordervalue = resultSet.getDouble("order_value");
-		String orderdate = resultSet.getString("order_date");
-		return new Order(orderid, customerid, ordervalue, orderdate);
+		return new Order(orderid, customerid, ordervalue);
 	}
 
 	/**
@@ -71,10 +70,9 @@ public class OrderDAO implements Dao<Order> {
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement(
-						"INSERT INTO orders(customer_id, order_date) VALUES (?, ?)");) {
-			statement.setLong(1, order.getCustomerid());
-			statement.setDouble(2, order.getOrdervalue());
-			statement.setString(3, order.getOrderdate());
+						"INSERT INTO orders(customer_id) VALUES (?)");) {
+			statement.setLong(1, order.getCustomerId());
+			statement.setDouble(2, order.getOrderValue());
 
 			statement.executeUpdate();
 			return readLatest();
@@ -129,12 +127,11 @@ public class OrderDAO implements Dao<Order> {
 	public Order update(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("UPDATE orders SET order_value = ?, order_date = ? WHERE orderid = ?, customer_id = ?");) {
-			statement.setLong(1, order.getOrderid());
-			statement.setLong(2, order.getCustomerid());
-			statement.setDouble(3, order.getOrdervalue());
-			statement.setString(4, order.getOrderdate());
-			return read(order.getOrderid());
+						.prepareStatement("UPDATE orders SET order_value = ?,  WHERE orderid = ?, customer_id = ?");) {
+			statement.setLong(1, order.getOrderId());
+			statement.setLong(2, order.getCustomerId());
+			statement.setDouble(3, order.getOrderValue());
+			return read(order.getOrderId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());

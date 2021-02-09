@@ -5,14 +5,9 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.qa.ims.persistence.dao.CustomerDAO;
-import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.dao.OrderDAO;
-import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.persistence.domain.Orderitem;
-import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
 
 public class OrderController implements CrudController<Order> {
@@ -51,9 +46,7 @@ public class OrderController implements CrudController<Order> {
 		boolean additem = true;
 		LOGGER.info("Please enter customerID");
 		Long customerid = utils.getLong();
-		LOGGER.info("Please enter the date");
-		String orderdate = utils.getString();
-		Order order = orderDAO.create(new Order (customerid, orderdate));
+		Order order = orderDAO.create(new Order (customerid));
 		while (additem) {
 			LOGGER.info("Do you want to add an item?: y/n");
 			String choice = utils.getString();
@@ -72,6 +65,7 @@ public class OrderController implements CrudController<Order> {
 		}
 		LOGGER.info("Order generated");
 		return order;
+	}
 
 	
 		
@@ -87,9 +81,7 @@ public class OrderController implements CrudController<Order> {
 		Long customerid = utils.getLong();
 		LOGGER.info("Please enter a new order value");
 		Double ordervalue = utils.getDouble();
-		LOGGER.info("Please enter an order date");
-		String orderdate = utils.getString();
-		Order order = orderDAO.update(new Order(customerid, orderdate, ordervalue));
+		Order order = orderDAO.update(new Order(customerid, ordervalue));
 		LOGGER.info("Order Updated");
 		return order;
 	}
