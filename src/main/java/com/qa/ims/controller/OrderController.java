@@ -43,9 +43,10 @@ public class OrderController implements CrudController<Order> {
 
 	/**
 	 * Creates a order by taking in user input
+	 * @throws SQLException 
 	 */
 	@Override
-	public Order create() {
+	public Order create() throws SQLException {
 		
 		boolean additem = true;
 		LOGGER.info("Please enter customerID");
@@ -61,31 +62,20 @@ public class OrderController implements CrudController<Order> {
 		Long itemid = utils.getLong();
 		LOGGER.info("Please enter how much of this item that you want");
 		Long quantity = utils.getLong();
-		LOGGER.info("Do you want to add anything else?");}
-			{
+		Order order1 = orderDAO.generate(new Orderitem (itemid, quantity));
+		LOGGER.info("Do you want to add anything else?");}	
 		else  {
+			additem = false;
 			
 		}
-			
-		}
-		
-		
-		try {
-			Order orderitem = orderDAO.generate(null);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 			
 		}
 		LOGGER.info("Order generated");
 		return order;
+}
 		
-	}
-		return order;
-		
-	}	
+	
+	
 		
 		
 	
