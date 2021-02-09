@@ -72,9 +72,7 @@ public class OrderController implements CrudController<Order> {
 		}
 		LOGGER.info("Order generated");
 		return order;
-}
-		
-	
+
 	
 		
 		
