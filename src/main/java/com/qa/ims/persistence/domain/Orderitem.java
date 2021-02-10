@@ -22,28 +22,28 @@ public class Orderitem {
 		this.itemquantity = itemquantity;
 
 	}
-	public Long getOrderitemid() {
+	public Long getOrderItemId() {
 		return orderitemid;
 	}
-	public void setOrderitemid(Long orderitemid) {
+	public void setOrderItemId(Long orderitemid) {
 		this.orderitemid = orderitemid;
 	}
-	public Long getOrderid() {
+	public Long getOrderId() {
 		return orderid;
 	}
-	public void setOrderid(Long orderid) {
+	public void setOrderId(Long orderid) {
 		this.orderid = orderid;
 	}
-	public Long getItemid() {
+	public Long getItemId() {
 		return itemid;
 	}
-	public void setItemid(Long itemid) {
+	public void setItemId(Long itemid) {
 		this.itemid = itemid;
 	}
-	public Long getItemquantity() {
+	public Long getItemQuantity() {
 		return itemquantity;
 	}
-	public void setItemquantity(Long itemquantity) {
+	public void setItemQuantity(Long itemquantity) {
 		this.itemquantity = itemquantity;
 	}
 	@Override

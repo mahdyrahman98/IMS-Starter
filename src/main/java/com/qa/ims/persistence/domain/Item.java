@@ -22,10 +22,10 @@ public class Item {
 	public String toString() {
 		return "Item [itemid=" + itemid + ", itemName=" + itemName + ", price=" + price + "]";
 	}
-	public Long getItemid() {
+	public Long getItemId() {
 		return itemid;
 	}
-	public void setItemid(Long itemid) {
+	public void setItemId(Long itemid) {
 		this.itemid = itemid;
 	}
 	public String getItemName() {

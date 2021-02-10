@@ -111,9 +111,9 @@ public class ItemDAO implements Dao<Item> {
 						.prepareStatement("UPDATE item SET item_name = ?, price = ? WHERE item_id = ?");) {
 			statement.setString(1, item.getItemName());
 			statement.setDouble(2, item.getPrice());
-			statement.setLong(3, item.getItemid());
+			statement.setLong(3, item.getItemId());
 			statement.executeUpdate();
-			return read(item.getItemid());
+			return read(item.getItemId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
