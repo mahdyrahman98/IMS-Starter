@@ -53,12 +53,17 @@ public class Order {
 		this.orderid = orderid;
 	}
 	public Long getCustomerId() {
-		return customerid();
+		return customerId();
 	}
-	private Long customerid() {
+
+		
+	private Long customerId() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
 	public void setCustomerId(Long customerid) {
 		this.customerid = customerid;
 	}
