@@ -28,9 +28,9 @@ public class ItemDAO implements Dao<Item> {
 	}
 
 	/**
-	 * Reads all customers from the database
+	 * Reads all items from the database
 	 * 
-	 * @return A list of customers
+	 * @return A list of items
 	 */
 	@Override
 	public List<Item> readAll() {
@@ -98,10 +98,10 @@ public class ItemDAO implements Dao<Item> {
 	}
 
 	/**
-	 * Updates a customer in the database
+	 * Updates an item in the database
 	 * 
-	 * @param customer - takes in a customer object, the id field will be used to
-	 *                 update that customer in the database
+	 * @param customer - takes in a item object, the id field will be used to
+	 *                 update that item in the database
 	 * @return
 	 */
 	@Override
@@ -111,9 +111,9 @@ public class ItemDAO implements Dao<Item> {
 						.prepareStatement("UPDATE item SET item_name = ?, price = ? WHERE item_id = ?");) {
 			statement.setString(1, item.getItemName());
 			statement.setDouble(2, item.getPrice());
-			statement.setLong(3, item.getItemid());
+			statement.setLong(3, item.getItemId());
 			statement.executeUpdate();
-			return read(item.getItemid());
+			return read(item.getItemId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
@@ -122,9 +122,9 @@ public class ItemDAO implements Dao<Item> {
 	}
 
 	/**
-	 * Deletes a customer in the database
+	 * Deletes an item in the database
 	 * 
-	 * @param id - id of the customer
+	 * @param id - id of the item
 	 */
 	@Override
 	public int delete(long id) {

@@ -3,73 +3,60 @@ package com.qa.ims.persistence.domain;
 import java.util.List;
 
 public class Order {
-	
+
 	private Long orderid;
 	private Long customerid;
-	private Double ordervalue;
 	private List<Item> items;
 
-	
-	
 	public List<Item> getItems() {
 		return items;
 	}
+
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
-	public Order(Long orderid, Long customerid, Double ordervalue, List<Item> items) {
+
+	public Order(Long orderid, Long customerid, List<Item> items) {
 		super();
 		this.orderid = orderid;
 		this.customerid = customerid;
-		this.ordervalue = ordervalue;
 		this.items = items;
 	}
-	
+
 	public Order(Long customerid) {
-	super();
-	
+		super();
+
 		this.customerid = customerid;
-		
-		
-		// TODO Auto-generated constructor stub
+
 	}
-	
-	public Order(Long orderid, Long customerid, Double ordervalue) {
+
+	public Order(Long orderid, Long customerid) {
 		super();
 		this.orderid = orderid;
 		this.customerid = customerid;
-		this.ordervalue = ordervalue;
 	}
-	public Order(Long customerid, Double ordervalue) {
-		super();
-		this.customerid = customerid;
-		this.ordervalue = ordervalue;
-		// TODO Auto-generated constructor stub
-	}
+
 	public Long getOrderId() {
 		return orderid;
 	}
+
 	public void setOrderId(Long orderid) {
 		this.orderid = orderid;
 	}
+
 	public Long getCustomerId() {
-		return getCustomerId();
+		return customerid;
 	}
+
 	public void setCustomerId(Long customerid) {
 		this.customerid = customerid;
-	}
-	public Double getOrderValue() {
-		return ordervalue;
-	}
-	public void setOrderValue(Double ordervalue) {
-		this.ordervalue = ordervalue;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [orderid=" + orderid + ", customerid=" + customerid + ", ordervalue=" + ordervalue
-				+ ", orderdate=" +  "]";
+		return "Order [orderid=" + orderid + ", customerid=" + customerid + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -77,9 +64,9 @@ public class Order {
 		result = prime * result + ((customerid == null) ? 0 : customerid.hashCode());
 		result = prime * result + ((items == null) ? 0 : items.hashCode());
 		result = prime * result + ((orderid == null) ? 0 : orderid.hashCode());
-		result = prime * result + ((ordervalue == null) ? 0 : ordervalue.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -104,14 +91,8 @@ public class Order {
 				return false;
 		} else if (!orderid.equals(other.orderid))
 			return false;
-		if (ordervalue == null) {
-			if (other.ordervalue != null)
-				return false;
-		} else if (!ordervalue.equals(other.ordervalue))
-			return false;
+
 		return true;
 	}
-	
-	
-	
+
 }
