@@ -22,6 +22,13 @@ public class Orderitem {
 		this.itemquantity = itemquantity;
 
 	}
+	public Orderitem(Long itemid) {
+	super();
+	this.itemid= itemid;
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Long getOrderItemId() {
 		return orderitemid;
 	}

@@ -77,12 +77,28 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order update() {
-		LOGGER.info("Please enter the customerid of the order you would like to update");
-		Long customerid = utils.getLong();
-		Order order = orderDAO.update(new Order(customerid));
-		LOGGER.info("Order Updated");
-		return order;
+		
+		boolean removeitem = true;
+		LOGGER.info("Please enter the orderid of the order you would like to update");
+		Long orderid = utils.getLong();
+		Order order = orderDAO.update(new Order(orderid));
+		while (removeitem) {
+			LOGGER.info("Do you want to remove an item?: y/n");
+			String choice = utils.getString();
+			if(choice.toLowerCase().equals("y")) {
+		LOGGER.info("please enter itemid");
+		Long itemid = utils.getLong();
+		Order order1 = orderDAO.edit(new Orderitem(itemid));
+		LOGGER.info("Do you want to remove anything else from your order?");}
+		else  {
+			removeitem = false;
+			
+		}
+		LOGGER.info("order updated");
 	}
+		return order;
+		}
+	
 
 	/**
 	 * Deletes an existing order by the id of the order
