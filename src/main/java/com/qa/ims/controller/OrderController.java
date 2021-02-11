@@ -11,13 +11,12 @@ import com.qa.ims.persistence.domain.Orderitem;
 import com.qa.ims.utils.Utils;
 
 public class OrderController implements CrudController<Order> {
-	
+
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	private OrderDAO orderDAO;
 	private Utils utils;
-	
-	
+
 	public OrderController(OrderDAO orderDAO, Utils utils) {
 		super();
 		this.orderDAO = orderDAO;
@@ -38,46 +37,42 @@ public class OrderController implements CrudController<Order> {
 
 	/**
 	 * Creates a order by taking in user input
-	 * @throws SQLException 
+	 * 
+	 * @throws SQLException
 	 */
 	@Override
 	public Order create() throws SQLException {
-		
+
 		boolean additem = true;
 		LOGGER.info("Please enter customerID");
 		Long customerid = utils.getLong();
-		Order order = orderDAO.create(new Order (customerid));
+		Order order = orderDAO.create(new Order(customerid));
 		while (additem) {
 			LOGGER.info("Do you want to add an item?: y/n");
 			String choice = utils.getString();
-			if(choice.toLowerCase().equals("y")) {
-		LOGGER.info("please enter itemid");
-		Long itemid = utils.getLong();
-		LOGGER.info("Please enter how much of this item that you want");
-		Long quantity = utils.getLong();
-		Order order1 = orderDAO.generate(new Orderitem (itemid, quantity));
-		LOGGER.info("Do you want to add anything else?");}	
-		else  {
-			additem = false;
-			
-		}
-			
+			if (choice.toLowerCase().equals("y")) {
+				LOGGER.info("please enter itemid");
+				Long itemid = utils.getLong();
+				LOGGER.info("Please enter how much of this item that you want");
+				Long quantity = utils.getLong();
+				orderDAO.generate(new Orderitem(itemid, quantity));
+				LOGGER.info("Do you want to add anything else?");
+			} else {
+				additem = false;
+
+			}
+
 		}
 		LOGGER.info("Order generated");
 		return order;
 	}
-
-	
-		
-		
-	
 
 	/**
 	 * Updates an existing order by taking in user input
 	 */
 	@Override
 	public Order update() {
-		
+
 		boolean removeitem = true;
 		LOGGER.info("Please enter the orderid of the order you would like to update");
 		Long orderid = utils.getLong();
@@ -85,20 +80,19 @@ public class OrderController implements CrudController<Order> {
 		while (removeitem) {
 			LOGGER.info("Do you want to remove an item?: y/n");
 			String choice = utils.getString();
-			if(choice.toLowerCase().equals("y")) {
-		LOGGER.info("please enter itemid");
-		Long itemid = utils.getLong();
-		Order order1 = orderDAO.edit(new Orderitem(itemid));
-		LOGGER.info("Do you want to remove anything else from your order?");}
-		else  {
-			removeitem = false;
-			
+			if (choice.toLowerCase().equals("y")) {
+				LOGGER.info("please enter itemid");
+				Long itemid = utils.getLong();
+				orderDAO.edit(new Orderitem(itemid));
+				LOGGER.info("Do you want to remove anything else from your order?");
+			} else {
+				removeitem = false;
+
+			}
+			LOGGER.info("order updated");
 		}
-		LOGGER.info("order updated");
-	}
 		return order;
-		}
-	
+	}
 
 	/**
 	 * Deletes an existing order by the id of the order
@@ -111,8 +105,5 @@ public class OrderController implements CrudController<Order> {
 		Long orderid = utils.getLong();
 		return orderDAO.delete(orderid);
 	}
-	
 
 }
-
-

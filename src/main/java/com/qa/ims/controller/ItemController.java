@@ -64,7 +64,7 @@ public class ItemController implements CrudController<Item> {
 		return item;
 		
 		
-		// TODO Auto-generated method stu
+		
 	}
 
 	@Override
