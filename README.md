@@ -1,4 +1,4 @@
-Coverage: 34%
+Coverage: 
 # Project Title
 
 IMS - Inventory Management System
