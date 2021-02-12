@@ -1,72 +1,35 @@
-Coverage: 
-# Project Title
+Coverage: N/A
 
-IMS - Inventory Management System
+IMS project 
+IMS - Inventory Management System - java project that allows end user to CRUD items orders and customers and transfer this data into an SQL database
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You will need:
 
-```
-Give examples
-```
+java version 14 or later 
+SQL 5.7 or later
+Eclipse or another Java IDE
 
-### Installing
+First clone the project to your local machine. You will then need to open up your IDE and import the project. Once imported locate the runner class within the IMS src folder and run the program.
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+You can then choose the different CRUD functions and implement what you want to do.
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+To run tests naviagte to the project tree and find the src/test/javafolder. Right click here and go to coverage as -> JUnit test which will allow the tests to run and then display the coverage.
 
-### Unit Tests 
 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+When running the programme it will open with a welcome message and will prompt you to chose a controller you want to use: customer, item and order. Once chosen it wil prompt you to choose a CRUD functionality and then you simply follow the prompts afterwards depending on controller and functionality, which wil dictate your input.
 
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
+* Eclipse
+* Jira
+* Draw.io
+* Excel
 
 ## Versioning
 
@@ -75,6 +38,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Mahdy Rahman**
 
 ## License
 
@@ -82,8 +46,4 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 *For help in [Choosing a license](https://choosealicense.com/)*
 
-## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
