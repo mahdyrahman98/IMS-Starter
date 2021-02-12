@@ -1,7 +1,7 @@
 Coverage: N/A
 
 
- ### IMS project 
+# IMS project 
 
 IMS - Inventory Management System - A java project that allows end user to CRUD items orders and customers and transfer this data into an SQL database
 
